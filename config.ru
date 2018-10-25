@@ -1,0 +1,3 @@
+require './standapp'
+
+run StandApp
