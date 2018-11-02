@@ -12,7 +12,7 @@ class Team    < Sequel::Model; end
 
 class StandApp < Sinatra::Base
   get '/' do
-    "Welcome to the StandApp!"
+    "Welcome to the StandApp Public Endpoint!"
   end
 
   get '/users' do

@@ -8,9 +8,27 @@ class StandAppTest < MiniTest::Unit::TestCase
     StandApp
   end
 
-  def test_hello_world
+  def test_welcome_message
     get '/'
     assert last_response.ok?
-    assert_equal "Hello to the StandApp!", last_response.body
+    assert_equal "Welcome to the StandApp Public Endpoint!", last_response.body
+  end
+
+  def test_users_page
+    get '/users'
+    assert last_response.ok?
+    assert_equal "This is the Users page", last_response.body
+  end
+
+  def test_stand_ups_page
+    get '/stand_ups'
+    assert last_response.ok?
+    assert_equal "This is the Stand_ups page", last_response.body
+  end
+
+  def test_teams_page
+    get '/teams'
+    assert last_response.ok?
+    assert_equal "This is the Teams page", last_response.body
   end
 end
