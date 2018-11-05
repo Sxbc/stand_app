@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra/base'
 require 'sequel'
 require 'sqlite3'
+require 'rack/protection'
 
 DB = Sequel.connect('sqlite://standapp.db')
 
@@ -11,6 +12,9 @@ class StandUp < Sequel::Model; end
 class Team    < Sequel::Model; end
 
 class StandApp < Sinatra::Base
+  enable :sessions
+  use Rack::Protection::AuthenticityToken
+
   get '/' do
     "Welcome to the StandApp!"
   end
