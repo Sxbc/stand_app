@@ -4,9 +4,6 @@ require 'sequel'
 require 'sqlite3'
 
 DB = Sequel.connect('sqlite://standapp.db')
-#require './app/models/answer'
-#require './app/models/user'
-#require './app/models/stand_up'
 
 class StandApp < Sinatra::Base
   get '/' do
