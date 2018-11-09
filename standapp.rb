@@ -5,10 +5,13 @@ require 'sinatra/respond_with'
 require 'builder'
 require 'sequel'
 require 'sqlite3'
+require 'rack/protection'
 
 DB = Sequel.connect('sqlite://standapp.db')
 
 class StandApp < Sinatra::Base
+  enable :sessions
+  use Rack::Protection::AuthenticityToken
   register Sinatra::RespondWith
 
   before (/.*/) do
