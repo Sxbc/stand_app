@@ -1,13 +1,22 @@
-class StandAppV2 < Sinatra::Base
+class StandAppV2 < StandApp
   get '/users' do
-    "This is the version 2.0 Users page!"
+    respond_with :index do |format|
+      format.xml { builder { |xml| xml.em "This is the Users V2 page!" } }
+      format.json { { hello: "world!" }.to_json }
+    end
   end
 
   get '/stand_ups' do
-    "This is the version 2.0 Stand_ups page!"
+    respond_with :index do |format|
+      format.xml { builder { |xml| xml.em "This is the Stand_ups V2 page!" } }
+      format.json { { hello: "world!" }.to_json }
+    end
   end
 
   get '/teams' do
-    "This is the version 2.0 Teams page"
+    respond_with :index do |format|
+      format.xml { builder { |xml| xml.em "This is the Teams V2 page!" } }
+      format.json { { hello: "world!" }.to_json }
+    end
   end
 end
