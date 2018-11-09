@@ -1,13 +1,29 @@
-class StandAppV1 < Sinatra::Base
-  get '/users' do
-    "This is the Users page"
+class StandAppV1 < StandApp
+  helpers do
+    def json_params
+      begin
+        JSON.parse(request.body.read)
+      rescue
+        halt 400, { message: 'Invalid JSON' }.to_json
+      end
+    end
   end
 
-  get '/stand_ups' do
-    "This is the Stand_ups page"
-  end
+  #before do
+  #  content_type 'application/xml'
+  #end
 
-  get '/teams' do
-    "This is the Teams page"
+  post '/registrations' do
+    user = User.new(json_params)
+    if user.save
+      status 201
+    else
+      status 400
+    end
+    respond_with :index do |format|
+      format.xml { builder { |xml| xml.em "User registered!" } }
+      format.json { { user: "registered!" }.to_json }
+    end
   end
 end
+
